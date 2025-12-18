@@ -1,0 +1,51 @@
+run_path: logs/Hoogeboom_attention/ 
+data_dir: data/QM9
+
+seed: 42
+device: cuda
+mode: train
+train_on_subset: False
+sample_after_train: True
+
+
+ddpm:
+  T: 1000
+  beta_min: 0.0001
+  beta_max: 0.02
+  input_dim: 5
+  coord_dim: 3
+
+
+noise_net:
+  type: Hoogeboom      # which EGNN implementation to use, either Satorras or Hoogeboom
+  input_dim: 5        # number of atomic features 
+  hidden_dim: 256     # message dimensions
+  num_layers: 9       # number of message passing layers
+  agg_method: "sum"   # how messages are aggregated to nodes, either "sum" or "mean"
+  norm_factor: 100  # constant by which divide the aggregated messages is using agg_method = "sum"ù
+# Satorras exclusives:
+  d_proj_dim: 32      # dimensionality to which the distance is embedded in before cat to h
+  t_emb_dim: 64       # dimensionality of sinusoidal embedding of t 
+# Hoogeboom exclusisves: 
+  num_sublayers: 1    # number of coords update in a single update block
+  tanh: True          # whether to use keep scalar weights unconstrained or between [-1,1] * coords_range
+  coords_range: 15    # only if tanh == True, coords_range multiplied by tanh(scalar_weight) 
+  sin_embedding: True # whether to embed atom distances to be used as edge attributes
+
+
+train:
+  resume_from_ckpt: False
+  lr: 0.0001
+  batch_size: 128
+  num_epochs: 1000
+  warmup_epochs: 100
+  ckpt_epochs: 100
+  loss_weights:
+    h: 0.5
+    x: 0.5
+
+sample:
+  batch_size: 128
+  num_samples: 1024
+  atom_decoder: ["H","C","N","O","F"]
+
