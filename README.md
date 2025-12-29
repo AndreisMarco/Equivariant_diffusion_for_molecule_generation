@@ -1,4 +1,5 @@
-This repository contains the code for the project course I did at DTU focused about equivariant diffusion models for molecule generation.
+This repository contains the code for the project course I did at DTU focused about equivariant diffusion models for molecule generation. 
+The project was supervised by Mikkel N. Schmidt.
 
 Due to storage constraints, the logs from the model training and all the experiments are available in [this google drive folder](https://drive.google.com/drive/folders/1I0oNhf8u3aKamNVhfoysRMvWpZix3Pg2?usp=sharing). \
 The data folder is also available in the google drive folder or can be reproduced by running  the ``process_QM9.py`` script. \
