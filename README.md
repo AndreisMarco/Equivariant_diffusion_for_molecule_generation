@@ -6,7 +6,7 @@ The data folder is also available in the google drive folder or can be reproduce
 The google drive folder will be available until 01/03/2026.
 
 Once downloaded the logs and created the data folder the root directory should look like: 
-* `configs/`: YAML files for geodesics and encoding comparisons
+* `configs/`: YAML configuration templates for training 
 * `data/`: Dataset for training models and dataset infos
-* `scripts/`: All scripts for training and geodesics
+* `scripts/`: All scripts for data processing, model training and evaluation
 * `logs/`: Model states and experiment results
